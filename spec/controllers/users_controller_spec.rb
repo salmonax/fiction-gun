@@ -30,6 +30,21 @@ describe UsersController do
         it {should redirect_to users_path}
         it {should set_the_flash[:notice]}
       end
-    end 
-  end    
+    end
+
+    context 'with invalid parameters' do
+      let(:invalid_attributes) {{:email => "", :password => "", :password_confirmation => '', :pen_name => ''}}
+      let(:invalid_parameters) {{:user => invalid_attributes}}
+
+      it 'does not create a new user' do
+        expect {post :create, invalid_parameters}.to change(User, :count).by(0) 
+      end
+
+      context 'before create' do 
+        before {post :create, invalid_parameters}
+        it {should redirect_to signup}
+        it {should set_the_flash[:alert]}
+      end
+    end
+  end
 end
