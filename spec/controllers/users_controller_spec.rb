@@ -38,34 +38,34 @@ describe UsersController do
       let(:invalid_parameters) {{:user => invalid_attributes}}
  
       before {post :create, invalid_parameters}
-      it {should set_the_flash[:alert]}
+      it {should set_the_flash[:alert].to("There were errors").now}
       it {should render_template :new}
     end
   end
 
-context 'GET index' do
-  before {get :index}
+  context 'GET index' do
+    before {get :index}
 
-  it {should render_template :index}
-end
+    it {should render_template :index}
+  end
 
-#   context 'GET edit' do
-#     let(:article) {FactoryGirl.create :article}
-#     before {get :edit, {:id => article.id}, {'user_id' => user.id}}
+  # context 'GET edit' do
+  #   let(:user) {FactoryGirl.create :user}
+  #   before {get :edit, {:id => user.id}, {'user_id' => user.id}}
 
-#     it {should render_template :edit}
-#   end
+  #   it {should render_template :edit}
+  # end
 
 #   context 'PUT update' do
-#     let(:article) {FactoryGirl.create :article}
+#     let(:user) {FactoryGirl.create :user}
 
 #     context 'with valid parameters' do 
 #       let(:valid_attributes) {{title: "fish who lie"}}
-#       let(:valid_parameters) {{id: article.id, article: valid_attributes}}
+#       let(:valid_parameters) {{id: user.id, user: valid_attributes}}
 #       before {put :update, valid_parameters, 'user_id' => user.id}
 
-#       it 'updates the article' do
-#         Article.find(article.id).title.should eq valid_attributes[:title]
+#       it 'updates the user' do
+#         Article.find(user.id).title.should eq valid_attributes[:title]
 #       end
 
 #       it {should redirect_to action: "index"}
@@ -73,7 +73,7 @@ end
 
 #     context 'with invalid parameters' do
 #       let(:invalid_attributes) {{title: ''}}
-#       let(:invalid_parameters) {{id: article.id, article: invalid_attributes}}
+#       let(:invalid_parameters) {{id: user.id, user: invalid_attributes}}
 #       before {put :update, invalid_parameters, 'user_id' => user.id}
 
 #       it {should render_template :edit}
@@ -82,9 +82,9 @@ end
 #   end
 
 #   context 'DELETE destroy' do 
-#     it 'destroys an article' do 
-#       article = FactoryGirl.create :article
-#       expect {delete :destroy, {:id => article.id}, 'user_id' => user.id}.to change(Article, :count).by(-1)
+#     it 'destroys an user' do 
+#       user = FactoryGirl.create :user
+#       expect {delete :destroy, {:id => user.id}, 'user_id' => user.id}.to change(Article, :count).by(-1)
 #     end
 #   end
 

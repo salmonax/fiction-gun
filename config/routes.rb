@@ -1,13 +1,13 @@
 FictionGun::Application.routes.draw do
 
-  # root to: 'users#index'
-  
+
+  resources :sessions
   resources :users
   get 'signup', to: 'users#new', as: 'signup'
   get 'login', to: "sessions#new", as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
 
-  resources :sessions
+   # root to: 'users#index'
 
 
   # The priority is based upon order of creation:

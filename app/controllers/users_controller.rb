@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     if @user.save
       redirect_to users_path, notice: "You have created your user account!"
     else
-      flash[:alert] = "There were errors"
+      flash.now[:alert] = "There were errors"
       render :new
     end
 
