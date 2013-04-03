@@ -1,0 +1,22 @@
+<% if @story.errors.any? %>
+  <h3>Not saved. Please make sure you've filled in all the blanks and try again.</h3>
+  <ul>
+    <% @story.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  <ul>
+<% end %>    
+
+
+
+<%= form_for @story do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :text %>
+  <%= f.text_field :text %>
+  <%= f.label :contributor_id %>
+  <%= f.text_field :contributor_id %>
+  <%= f.label :genre_id %>
+  <%= f.text_field :genre_id %>
+  <%= f.submit %>
+<% end %>
