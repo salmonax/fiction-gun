@@ -1,16 +1,17 @@
 <% provide :title, "Home" %>
 
-
 <h1>Fiction Gun</h1>
 
 <h2>A collaborative online writing space</h2>
 
-<table>
+<table class="table">
   <tr>
     <td>Title</td>
     <td>Text</td>
     <td>Contributor</td>
     <td>Genre</td>
+    <td></td>
+    <td></td>
   </tr>
   <% @stories.each do |story| %>
     <tr>
@@ -18,8 +19,10 @@
       <td><%= story.text %></td>
       <td><%= story.contributor_id %></td>
       <td><%= story.genre_id %></td>
+      <td><%= link_to 'Edit', edit_story_path(story), :class => 'btn btn-primary' %></td>
+      <td><%= link_to 'Delete', story, :class => 'btn btn-primary', :method => :delete, :data => { :confirm => 'Are you sure?' }  %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to 'Add story', new_story_path %></p>
+<p><%= link_to 'Add story', new_story_path, :class => 'btn btn-primary' %></p>

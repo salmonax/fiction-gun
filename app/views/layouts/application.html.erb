@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 <head>
   <title>FictionGun | <%= yield :title %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -7,8 +6,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container">
+    <% if flash[:notice] %>
+      <div class="alert alert-info"><%= flash[:notice] %></div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-error"><%= flash[:alert] %></div>
+    <% end %>     
 
-<%= yield %>
-
+    <%= yield %>
+  </div>
 </body>
-</html>

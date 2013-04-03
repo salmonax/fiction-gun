@@ -1,13 +1,13 @@
 <% if @story.errors.any? %>
-  <h3>Not saved. Please make sure you've filled in all the blanks and try again.</h3>
-  <ul>
-    <% @story.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  <ul>
-<% end %>    
-
-
+  <div class="alert alert-error">
+    <h3>Not saved. Please correct these problems:</h3>
+    <ul>
+      <% @story.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    <ul>
+  </div>
+<% end %>  
 
 <%= form_for @story do |f| %>
   <%= f.label :title %>
@@ -18,5 +18,5 @@
   <%= f.text_field :contributor_id %>
   <%= f.label :genre_id %>
   <%= f.text_field :genre_id %>
-  <%= f.submit %>
+  <%= f.submit :class => 'btn btn-primary' %>
 <% end %>
