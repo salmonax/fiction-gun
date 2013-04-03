@@ -25,6 +25,7 @@ describe UsersController do
       it 'creates a new user' do
         expect {post :create, valid_parameters}.to change(User, :count).by(1) 
       end
+
       context 'before create' do 
         before {post :create, valid_parameters}
         it {should redirect_to users_path}
@@ -35,16 +36,58 @@ describe UsersController do
     context 'with invalid parameters' do
       let(:invalid_attributes) {{:email => "", :password => "", :password_confirmation => '', :pen_name => ''}}
       let(:invalid_parameters) {{:user => invalid_attributes}}
-
-      it 'does not create a new user' do
-        expect {post :create, invalid_parameters}.to change(User, :count).by(0) 
-      end
-
-      context 'before create' do 
-        before {post :create, invalid_parameters}
-        it {should redirect_to signup}
-        it {should set_the_flash[:alert]}
-      end
+ 
+      before {post :create, invalid_parameters}
+      it {should set_the_flash[:alert]}
+      it {should render_template :new}
     end
   end
+
+context 'GET index' do
+  before {get :index}
+
+  it {should render_template :index}
+end
+
+#   context 'GET edit' do
+#     let(:article) {FactoryGirl.create :article}
+#     before {get :edit, {:id => article.id}, {'user_id' => user.id}}
+
+#     it {should render_template :edit}
+#   end
+
+#   context 'PUT update' do
+#     let(:article) {FactoryGirl.create :article}
+
+#     context 'with valid parameters' do 
+#       let(:valid_attributes) {{title: "fish who lie"}}
+#       let(:valid_parameters) {{id: article.id, article: valid_attributes}}
+#       before {put :update, valid_parameters, 'user_id' => user.id}
+
+#       it 'updates the article' do
+#         Article.find(article.id).title.should eq valid_attributes[:title]
+#       end
+
+#       it {should redirect_to action: "index"}
+#     end
+
+#     context 'with invalid parameters' do
+#       let(:invalid_attributes) {{title: ''}}
+#       let(:invalid_parameters) {{id: article.id, article: invalid_attributes}}
+#       before {put :update, invalid_parameters, 'user_id' => user.id}
+
+#       it {should render_template :edit}
+#       it {should set_the_flash[:alert]}
+#     end
+#   end
+
+#   context 'DELETE destroy' do 
+#     it 'destroys an article' do 
+#       article = FactoryGirl.create :article
+#       expect {delete :destroy, {:id => article.id}, 'user_id' => user.id}.to change(Article, :count).by(-1)
+#     end
+#   end
+
+
+
 end

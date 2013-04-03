@@ -8,10 +8,16 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
 
     if @user.save
-      redirect_to root_url, notice: "You have created your user account!"
+      redirect_to users_path, notice: "You have created your user account!"
     else
+      flash[:alert] = "There were errors"
       render :new
     end
 
   end
+
+  def index
+    @users = User.all
+  end
+
 end
