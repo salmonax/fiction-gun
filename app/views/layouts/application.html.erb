@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Fiction Gun</title>
+  <title>Fiction Gun | <%= yield :title %></title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <div class="container">
+    <% if flash[:notice] %>
+      <div class="alert alert-info"><%= flash[:notice] %></div>
+    <% end %>
+    <% if flash[:alert] %>
+      <div class="alert alert-error"><%= flash[:alert] %></div>
+    <% end %>
+    <div style="text-align:right;padding:10px">
+      <% if current_user %>
+      Logged in as <b><%= current_user.screen_name %></b>.
+      <%= link_to "Log Out", logout_path, method: "delete", :class => 'btn btn-primary' %>
+      <% else %>
+        <%= link_to "Sign Up", signup_path, :class => 'btn btn-primary' %> or
+        <%= link_to "Log In", login_path, :class => 'btn btn-primary' %>
+      <% end %>
+    </div>
+    <%= yield %>
+  </div>
 
 <%= yield %>
 
