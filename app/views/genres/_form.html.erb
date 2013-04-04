@@ -1,0 +1,16 @@
+<% if @genre.errors.any? %>
+  <div class="alert alert-error">
+    <h3>Not saved. Please correct these problems:</h3>
+    <ul>
+      <% @genre.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    <ul>
+  </div>
+<% end %>  
+
+<%= form_for @genre do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+  <%= f.submit :class => 'btn btn-primary' %>
+<% end %>
