@@ -98,6 +98,10 @@ describe UsersController do
         user = FactoryGirl.create :user
         expect {delete :destroy, {:id => user.id}, 'user_id' => user.id}.to change(User, :count).by(-1)
       end
+
+      let(:user) {FactoryGirl.create(:user)}
+      before {delete :destroy, {:id => user.id}, {'user_id' => user.id}}
+      it {should redirect_to signup_path}
     end
 
     context 'without authorized session' do
