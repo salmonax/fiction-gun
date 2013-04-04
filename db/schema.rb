@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404000730) do
+ActiveRecord::Schema.define(:version => 20130404212455) do
+
+  create_table "contributions", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "story_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "genres", :force => true do |t|
     t.string   "name"
@@ -22,10 +29,9 @@ ActiveRecord::Schema.define(:version => 20130404000730) do
   create_table "stories", :force => true do |t|
     t.string   "title"
     t.string   "text"
-    t.integer  "contributor_id"
     t.integer  "genre_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

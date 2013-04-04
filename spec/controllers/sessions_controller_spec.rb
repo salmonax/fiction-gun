@@ -20,7 +20,7 @@ describe SessionsController do
 
       it 'redirects to the users index' do 
         post :create, {:email => user.email, :password => user.password}
-        should redirect_to users_path
+        should redirect_to stories_path
       end
     end
 

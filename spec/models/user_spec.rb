@@ -19,4 +19,8 @@ describe User do
   context 'password security' do
     it 'validates security of a password'
   end
+
+  context 'associations' do
+    it {should have_many(:stories).through(:contributions)}
+  end
 end

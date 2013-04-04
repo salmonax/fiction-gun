@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to users_path, notice: "You have created your user account!"
+      redirect_to stories_path, notice: "You have created your user account!"
     else
       flash.now[:alert] = "There were errors"
       render :new
