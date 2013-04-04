@@ -16,7 +16,7 @@
     <% end %>
     <div style="text-align:right;padding:10px">
       <% if current_user %>
-      Logged in as <b><%= current_user.screen_name %></b>.
+      Logged in as <b><%= current_user.pen_name %></b>.
       <%= link_to "Log Out", logout_path, method: "delete", :class => 'btn btn-primary' %>
       <% else %>
         <%= link_to "Sign Up", signup_path, :class => 'btn btn-primary' %> or
@@ -25,8 +25,6 @@
     </div>
     <%= yield %>
   </div>
-
-<%= yield %>
 
 </body>
 </html>

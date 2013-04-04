@@ -1,2 +1,5 @@
-<%= flash[:notice] %>
-<%= flash[:alert] %>
+<% provide :title, "Create Account" %>
+
+<h3><%= yield :title %></h3>
+
+<%= render 'form' %>

@@ -26,6 +26,8 @@ describe UsersController do
         expect {post :create, valid_parameters}.to change(User, :count).by(1) 
       end
 
+      it 'logs in the new user'
+
       context 'before create' do 
         before {post :create, valid_parameters}
         it {should redirect_to users_path}
@@ -44,9 +46,17 @@ describe UsersController do
   end
 
   context 'GET index' do
-    before {get :index}
+    let(:user) {FactoryGirl.create(:user)}
 
-    it {should render_template :index}
+    context 'with authorized session' do
+      before {get :index, {}, {'user_id' => user.id}}
+      it {should render_template :index}
+    end
+
+    context 'without authorized session' do
+      before {get :index, {}, {}}
+      it {should redirect_to login_url}
+    end
   end
 
   # context 'GET edit' do
@@ -81,13 +91,27 @@ describe UsersController do
 #     end
 #   end
 
-#   context 'DELETE destroy' do 
-#     it 'destroys an user' do 
-#       user = FactoryGirl.create :user
-#       expect {delete :destroy, {:id => user.id}, 'user_id' => user.id}.to change(Article, :count).by(-1)
-#     end
-#   end
+  context 'DELETE destroy' do 
 
+  #   it 'destroys an user' do
+  #     user = FactoryGirl.create :user
+  #     expect {delete :destroy, {:id => user.id}, 'user_id' => user.id}.to change(Article, :count).by(-1)
+  #   end
+  # end
+    let(:user) {FactoryGirl.create(:user)}
+
+    context 'with authorized session' do
+      it 'destroys a user' do
+        expect {delete :destroy, {:id => user.id}, 'user_id' => user.id}.to change(User, :count).by(-1)
+      end
+    end
+
+    # context 'without authorized session' do
+    #   before {get :index, {}, {}}
+    #   it {should redirect_to login_url}
+    # end
+
+  end
 
 
 end
