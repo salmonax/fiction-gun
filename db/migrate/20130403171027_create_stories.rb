@@ -5,6 +5,8 @@ class CreateStories < ActiveRecord::Migration
       t.column :text, :string
       t.column :contributor_id, :integer
       t.column :genre_id, :integer
+
+      t.timestamps
     end
   end
 end
