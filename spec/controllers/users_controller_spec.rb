@@ -107,10 +107,19 @@ describe UsersController do
       end
     end
 
-    # context 'without authorized session' do
-    #   before {get :index, {}, {}}
-    #   it {should redirect_to login_url}
-    # end
+    context 'without authorized session' do
+      
+      it 'does not destroy a user' do
+        user = FactoryGirl.create(:user)
+        expect {delete :destroy, {:id => user.id}, {}}.to change(User, :count).by(0)
+      end
+
+      let(:user) {FactoryGirl.create(:user)}
+
+      before {delete :destroy, {:id => user.id}, {}}
+      it {should set_the_flash[:alert].to("Not authorized")}
+      it {should redirect_to login_url}
+    end
 
   end
 
