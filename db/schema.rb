@@ -13,6 +13,13 @@
 
 ActiveRecord::Schema.define(:version => 20130403171304) do
 
+  create_table "stories", :force => true do |t|
+    t.string  "title"
+    t.string  "text"
+    t.integer "contributor_id"
+    t.integer "genre_id"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "pen_name"

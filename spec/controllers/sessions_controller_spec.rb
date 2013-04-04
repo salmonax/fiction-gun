@@ -38,7 +38,7 @@ describe SessionsController do
       session[:user_id].should be_nil
     end
     before {delete :destroy, {:user_id => user.id}}
-    it {should redirect_to users_path}
+    it {should redirect_to login_path}
     it {should set_the_flash[:notice].to("Logged out!")}
   end
 end
