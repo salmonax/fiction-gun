@@ -33,8 +33,9 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.destroy
+    session[:user_id] = nil
     flash[:notice] = "Your profile has been obliterated!"
-    redirect_to signup_url
+    redirect_to signup_path
   end
 
 end
