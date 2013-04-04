@@ -1,0 +1,22 @@
+<% provide :title, "Home" %>
+
+<h1>Fiction Gun</h1>
+
+<h2>A collaborative online writing space</h2>
+
+<table class="table">
+  <tr>
+    <td>Name</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <% @genres.each do |genre| %>
+    <tr>
+      <td><%= genre.name %></td>
+      <td><%= link_to 'Edit', edit_genre_path(genre), :class => 'btn btn-primary' %></td>
+      <td><%= link_to 'Delete', genre, :class => 'btn btn-primary', :method => :delete, :data => { :confirm => 'Are you sure?' }  %></td>
+    </tr>
+  <% end %>
+</table>
+
+<p><%= link_to 'Add genre', new_genre_path, :class => 'btn btn-primary' %></p>
