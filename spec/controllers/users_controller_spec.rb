@@ -59,46 +59,39 @@ describe UsersController do
     end
   end
 
-  # context 'GET edit' do
+  context 'GET edit' do
+    let(:user) {FactoryGirl.create :user}
+    before {get :edit, {:id => user.id}, {'user_id' => user.id}}
+
+    it {should render_template :edit}
+  end
+
+  # context 'PUT update' do
   #   let(:user) {FactoryGirl.create :user}
-  #   before {get :edit, {:id => user.id}, {'user_id' => user.id}}
 
-  #   it {should render_template :edit}
-  # end
+  #   context 'with valid parameters' do 
+  #     let(:valid_attributes) {{title: "fish who lie"}}
+  #     let(:valid_parameters) {{id: user.id, user: valid_attributes}}
+  #     before {put :update, valid_parameters, 'user_id' => user.id}
 
-#   context 'PUT update' do
-#     let(:user) {FactoryGirl.create :user}
+  #     it 'updates the user' do
+  #       Article.find(user.id).title.should eq valid_attributes[:title]
+  #     end
 
-#     context 'with valid parameters' do 
-#       let(:valid_attributes) {{title: "fish who lie"}}
-#       let(:valid_parameters) {{id: user.id, user: valid_attributes}}
-#       before {put :update, valid_parameters, 'user_id' => user.id}
+  #     it {should redirect_to action: "index"}
+  #   end
 
-#       it 'updates the user' do
-#         Article.find(user.id).title.should eq valid_attributes[:title]
-#       end
+  #   context 'with invalid parameters' do
+  #     let(:invalid_attributes) {{title: ''}}
+  #     let(:invalid_parameters) {{id: user.id, user: invalid_attributes}}
+  #     before {put :update, invalid_parameters, 'user_id' => user.id}
 
-#       it {should redirect_to action: "index"}
-#     end
-
-#     context 'with invalid parameters' do
-#       let(:invalid_attributes) {{title: ''}}
-#       let(:invalid_parameters) {{id: user.id, user: invalid_attributes}}
-#       before {put :update, invalid_parameters, 'user_id' => user.id}
-
-#       it {should render_template :edit}
-#       it {should set_the_flash[:alert]}
-#     end
-#   end
-
-  context 'DELETE destroy' do 
-
-  #   it 'destroys an user' do
-  #     user = FactoryGirl.create :user
-  #     expect {delete :destroy, {:id => user.id}, 'user_id' => user.id}.to change(Article, :count).by(-1)
+  #     it {should render_template :edit}
+  #     it {should set_the_flash[:alert]}
   #   end
   # end
-    # let(:user) {FactoryGirl.create(:user)}
+
+  context 'DELETE destroy' do 
 
     context 'with authorized session' do
       it 'destroys a user' do
