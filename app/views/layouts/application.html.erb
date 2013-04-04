@@ -16,6 +16,7 @@
     <div style="text-align:right;padding:10px">
       <% if current_user %>
         Logged in as <b><%= current_user.pen_name %></b>.
+        <%= link_to "My Profile", user_path(current_user.id), method: "get", :class => 'btn btn-primary' %>
         <%= link_to "Log Out", logout_path, method: "delete", :class => 'btn btn-primary' %>
         <%= link_to "Edit Account", edit_user_path(current_user.id), method: "get", :class => 'btn btn-primary' %>
         <%= link_to "Delete Account", user_path(current_user.id), method: "delete", :class => 'btn btn-small btn-danger' %>

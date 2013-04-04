@@ -1,14 +1,15 @@
 class StoriesController < ApplicationController
   before_filter :authorize, only: [:new, :create, :edit, :update, :destroy]
-  
+
   def new
-    @story = Story.new
+    @story = current_user.stories.new
   end
 
   def create
-    @story = Story.new(params[:story])
+    @story = current_user.stories.new(params[:story])
 
     if @story.save
+      Contribution.create(:story_id => @story.id, :user_id => current_user.id)
       flash[:notice] = "Your story was successfully created! YAY!"
       redirect_to stories_path
 
