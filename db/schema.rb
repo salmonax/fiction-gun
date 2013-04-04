@@ -20,12 +20,10 @@ ActiveRecord::Schema.define(:version => 20130404000730) do
   end
 
   create_table "stories", :force => true do |t|
-    t.string   "title"
-    t.string   "text"
-    t.integer  "contributor_id"
-    t.integer  "genre_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.string  "title"
+    t.string  "text"
+    t.integer "contributor_id"
+    t.integer "genre_id"
   end
 
   create_table "users", :force => true do |t|
