@@ -9,6 +9,6 @@ FactoryGirl.define do
   end
 
   factory :genre do
-    name 'Coolest Genre Evar'
+    sequence(:name) {|n| "unique genre#{n}" }
   end
 end

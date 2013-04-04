@@ -10,7 +10,6 @@ describe GenresController do
   context 'routing' do
     it {should route(:get, '/genres/new').to :action => :new}
     it {should route(:post, '/genres').to :action => :create}
-    it {should route(:get, '/genres/1').to :action => :show, :id => 1}
     it {should route(:get, '/genres/1/edit').to :action => :edit, :id => 1}
     it {should route(:put, '/genres/1').to :action => :update, :id => 1}
     it {should route(:delete, '/genres/1').to :action => :destroy, :id => 1}
@@ -24,11 +23,12 @@ describe GenresController do
 
   context 'POST create' do
     context 'with valid parameters' do
+      before {post :create, valid_parameters}
+
       it 'creates a new genre' do
-        expect {post :create, valid_parameters}.to change(Genre, :count).by(1)
+        expect {post :create, {:genre => {:name => 'ultimate genre'}}}.to change(Genre, :count).by(1)
       end
 
-      before {post :create, valid_parameters}
       it {should redirect_to new_genre_path}
       it {should set_the_flash[:notice]}
     end
@@ -63,12 +63,6 @@ describe GenresController do
 
       it {should render_template :edit}
     end
-  end
-
-  context 'GET show' do
-    before {get :show, {:id => genre.id}}
-
-    it {should render_template :show}
   end
 
   context 'DELETE destroy' do

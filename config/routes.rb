@@ -1,7 +1,7 @@
 FictionGun::Application.routes.draw do
 
   resources :stories
-  resources :genres
+  resources :genres, :except => :show
   
   root :to => 'stories#index'
 

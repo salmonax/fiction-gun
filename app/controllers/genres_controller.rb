@@ -17,10 +17,6 @@ class GenresController < ApplicationController
     end
   end
 
-  def show
-    @genre = Genre.find(params[:id])
-  end
-
   def index
     @genres = Genre.all
   end

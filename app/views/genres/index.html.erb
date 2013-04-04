@@ -6,23 +6,17 @@
 
 <table class="table">
   <tr>
-    <td>Title</td>
-    <td>Text</td>
-    <td>Contributor</td>
-    <td>Genre</td>
+    <td>Name</td>
     <td></td>
     <td></td>
   </tr>
-  <% @stories.each do |story| %>
+  <% @genres.each do |genre| %>
     <tr>
-      <td><%= story.title %></td>
-      <td><%= story.text %></td>
-      <td><%= story.contributor_id %></td>
-      <td><%= story.genre_id %></td>
-      <td><%= link_to 'Edit', edit_story_path(story), :class => 'btn btn-primary' %></td>
-      <td><%= link_to 'Delete', story, :class => 'btn btn-primary', :method => :delete, :data => { :confirm => 'Are you sure?' }  %></td>
+      <td><%= genre.name %></td>
+      <td><%= link_to 'Edit', edit_genre_path(genre), :class => 'btn btn-primary' %></td>
+      <td><%= link_to 'Delete', genre, :class => 'btn btn-primary', :method => :delete, :data => { :confirm => 'Are you sure?' }  %></td>
     </tr>
   <% end %>
 </table>
 
-<p><%= link_to 'Add story', new_story_path, :class => 'btn btn-primary' %></p>
+<p><%= link_to 'Add genre', new_genre_path, :class => 'btn btn-primary' %></p>
