@@ -10,7 +10,7 @@
   </tr>
   <% @users.each do |user| %>
     <tr>
-      <td><%= user.pen_name %></td>
+      <td><%= link_to user.pen_name, user_path(user.id), method: "get" %></td>
       <td><%= user.email %></td>
       <td><%= user.created_at.localtime.strftime("%x") %></td>
     </tr>

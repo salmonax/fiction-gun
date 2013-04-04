@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :authorize, only: [:index, :edit, :destroy, :update]
+  before_filter :authorize, only: [:index, :edit, :destroy, :update, :show]
 
   def new
     @user = User.new
@@ -21,6 +21,11 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+  end
+
+  def show
+    @user = User.find(params[:id])
+    render :show
   end
 
   def edit

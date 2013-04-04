@@ -124,5 +124,13 @@ describe UsersController do
 
   end
 
-
+  context 'GET show' do
+    context 'with authorized session' do
+      it 'shows a specific user with a given id number' do
+        user = FactoryGirl.create(:user)
+        get :show, {:id => user.id}, {'user_id' => user.id}
+        should render_template :show 
+      end
+    end
+  end
 end
