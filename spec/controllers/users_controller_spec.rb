@@ -66,30 +66,34 @@ describe UsersController do
     it {should render_template :edit}
   end
 
-  # context 'PUT update' do
-  #   let(:user) {FactoryGirl.create :user}
+  context 'PUT update' do
+    let(:user) {FactoryGirl.create :user}
 
-  #   context 'with valid parameters' do 
-  #     let(:valid_attributes) {{title: "fish who lie"}}
-  #     let(:valid_parameters) {{id: user.id, user: valid_attributes}}
-  #     before {put :update, valid_parameters, 'user_id' => user.id}
+    context 'with authorized session' do
+      context 'with valid parameters' do 
+        let(:valid_attributes) {{:email => user.email, :pen_name => 'new_name', :password => user.password, :password_confirmation => user.password_confirmation}}
+        let(:valid_parameters) {{:id => user.id, :user => valid_attributes}}
+        before {put :update, valid_parameters, 'user_id' => user.id}
 
-  #     it 'updates the user' do
-  #       Article.find(user.id).title.should eq valid_attributes[:title]
-  #     end
+        it 'updates the user attributes' do
+          User.find(user.id).pen_name.should eq valid_attributes[:pen_name]
+        end
 
-  #     it {should redirect_to action: "index"}
-  #   end
+        it {should set_the_flash[:notice].to("Your account was successsfully updated.")}
+        it {should redirect_to users_path}
+      end
 
-  #   context 'with invalid parameters' do
-  #     let(:invalid_attributes) {{title: ''}}
-  #     let(:invalid_parameters) {{id: user.id, user: invalid_attributes}}
-  #     before {put :update, invalid_parameters, 'user_id' => user.id}
+      context 'with invalid parameters' do
+        let(:invalid_attributes) {{:email => '', :pen_name => '', :password => '', :password_confirmation => ''}}
+        let(:invalid_parameters) {{:id => user.id, :user => invalid_attributes}}
+        before {put :update, invalid_parameters, 'user_id' => user.id}
 
-  #     it {should render_template :edit}
-  #     it {should set_the_flash[:alert]}
-  #   end
-  # end
+        it {should render_template :edit}
+        it {should set_the_flash[:alert].to("There were errors in trying to update your account!").now}
+      end
+    end
+
+  end
 
   context 'DELETE destroy' do 
 

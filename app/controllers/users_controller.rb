@@ -28,6 +28,14 @@ class UsersController < ApplicationController
   end
 
   def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "Your account was successsfully updated."
+      redirect_to users_path
+    else
+      flash.now[:alert] = "There were errors in trying to update your account!"
+      render :edit
+    end
   end
 
   def destroy
