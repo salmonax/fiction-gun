@@ -13,6 +13,8 @@ gem 'bootstrap-sass'
 
 group :test, :development do
   gem 'rspec-rails'
+  gem 'pry'
+  gem 'pry-debugger'
 end
 
 group :test do
