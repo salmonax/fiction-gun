@@ -98,10 +98,11 @@ describe UsersController do
   #     expect {delete :destroy, {:id => user.id}, 'user_id' => user.id}.to change(Article, :count).by(-1)
   #   end
   # end
-    let(:user) {FactoryGirl.create(:user)}
+    # let(:user) {FactoryGirl.create(:user)}
 
     context 'with authorized session' do
       it 'destroys a user' do
+        user = FactoryGirl.create :user
         expect {delete :destroy, {:id => user.id}, 'user_id' => user.id}.to change(User, :count).by(-1)
       end
     end
