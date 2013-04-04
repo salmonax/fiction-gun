@@ -1,0 +1,18 @@
+<% provide :title, "Members" %>
+<h3><%= yield :title %></h3>
+
+
+<table class="table">
+  <tr>
+    <td><b>Pen Name</b></td>
+    <td><b>Email</b></td>
+    <td><b>Member Since</b></td>
+  </tr>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= link_to user.pen_name, user_path(user.id), method: "get" %></td>
+      <td><%= user.email %></td>
+      <td><%= user.created_at.localtime.strftime("%x") %></td>
+    </tr>
+  <% end %>
+</table>
