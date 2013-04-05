@@ -10,4 +10,7 @@ describe Story do
   it {should allow_mass_assignment_of :text}
   it {should allow_mass_assignment_of :contributor_id}
   it {should allow_mass_assignment_of :genre_id}
+
+  it {should belong_to :genre}
+  
 end

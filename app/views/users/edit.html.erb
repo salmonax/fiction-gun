@@ -1,7 +1,5 @@
 <% provide :title, "Edit Account" %>
 
-<h3><%= yield :title %></h3>
-
 <% if @user.errors.any? %>
   <div class="alert alert-error">
     <h4>Please correct these problems:</h4>
@@ -24,3 +22,4 @@
   <%= f.password_field :password_confirmation %>
   <%= f.submit :class => 'btn btn-primary' %>
 <% end %>
+<%= link_to "Delete Account", user_path(current_user.id), method: "delete", :class => 'btn btn-danger' %>

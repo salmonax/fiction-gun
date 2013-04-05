@@ -1,8 +1,4 @@
-<% provide :title, "Home" %>
-
-<h1>Fiction Gun</h1>
-
-<h2>A collaborative online writing space</h2>
+<% provide :title, "Current Stories" %>
 
 <table class="table">
   <tr>
@@ -18,7 +14,7 @@
       <td><%= story.title %></td>
       <td><%= story.text %></td>
       <td><%= story.contributor_id %></td>
-      <td><%= story.genre_id %></td>
+      <td><%= story.genre.name %></td>
       <td><%= link_to 'Edit', edit_story_path(story), :class => 'btn btn-primary' %></td>
       <td><%= link_to 'Delete', story, :class => 'btn btn-primary', :method => :delete, :data => { :confirm => 'Are you sure?' }  %></td>
     </tr>

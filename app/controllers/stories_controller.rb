@@ -2,6 +2,7 @@ class StoriesController < ApplicationController
 
   def new
     @story = Story.new
+    @genres = Genre.all
   end
 
   def create
@@ -19,6 +20,7 @@ class StoriesController < ApplicationController
 
   def show
     @story = Story.find(params[:id])
+
   end
 
   def index
@@ -27,6 +29,7 @@ class StoriesController < ApplicationController
 
   def edit
     @story = Story.find(params[:id])
+    @genres = Genre.all
   end
 
   def destroy
