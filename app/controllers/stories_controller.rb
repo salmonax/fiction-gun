@@ -1,4 +1,5 @@
 class StoriesController < ApplicationController
+  before_filter :authorize, only: [:new, :create, :edit, :update, :destroy]
 
   def new
     @story = Story.new
@@ -6,11 +7,12 @@ class StoriesController < ApplicationController
   end
 
   def create
-    @story = Story.new(params[:story])
+    @story = current_user.stories.new(params[:story])
 
     if @story.save
+      Contribution.create(:story_id => @story.id, :user_id => current_user.id)
       flash[:notice] = "Your story was successfully created! YAY!"
-      redirect_to new_story_path
+      redirect_to stories_path
 
     else
       render :new
@@ -32,13 +34,6 @@ class StoriesController < ApplicationController
     @genres = Genre.all
   end
 
-  def destroy
-    @story = Story.find(params[:id])
-    @story.destroy
-    flash[:notice] = "Your story was successfully deleted."
-    redirect_to stories_path
-  end
-
   def update
     @story = Story.find(params[:id])
     if @story.update_attributes(params[:story])
@@ -47,6 +42,13 @@ class StoriesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def destroy
+    @story = Story.find(params[:id])
+    @story.destroy
+    flash[:notice] = "Your story was successfully deleted."
+    redirect_to stories_path
   end
 
 end

@@ -4,17 +4,20 @@
   <tr>
     <td>Title</td>
     <td>Text</td>
-    <td>Contributor</td>
     <td>Genre</td>
     <td></td>
     <td></td>
   </tr>
   <% @stories.each do |story| %>
     <tr>
-      <td><%= story.title %></td>
+      <td><%= link_to story.title, story_path(story.id), :method => :get %></td>
       <td><%= story.text %></td>
+<<<<<<< HEAD
+      <td><%= story.genre_id %></td>
+=======
       <td><%= story.contributor_id %></td>
       <td><%= story.genre.name %></td>
+>>>>>>> master
       <td><%= link_to 'Edit', edit_story_path(story), :class => 'btn btn-primary' %></td>
       <td><%= link_to 'Delete', story, :class => 'btn btn-primary', :method => :delete, :data => { :confirm => 'Are you sure?' }  %></td>
     </tr>

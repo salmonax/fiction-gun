@@ -30,7 +30,7 @@ describe UsersController do
 
       context 'before create' do 
         before {post :create, valid_parameters}
-        it {should redirect_to users_path}
+        it {should redirect_to stories_path}
         it {should set_the_flash[:notice]}
       end
     end
@@ -118,7 +118,7 @@ describe UsersController do
       let(:user) {FactoryGirl.create(:user)}
 
       before {delete :destroy, {:id => user.id}, {}}
-      it {should set_the_flash[:alert].to("Not authorized")}
+      it {should set_the_flash[:alert]}
       it {should redirect_to login_url}
     end
 
