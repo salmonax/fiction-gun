@@ -19,12 +19,15 @@
         <%= link_to "My Profile", user_path(current_user.id), method: "get", :class => 'btn btn-primary' %>
         <%= link_to "Log Out", logout_path, method: "delete", :class => 'btn btn-primary' %>
         <%= link_to "Edit Account", edit_user_path(current_user.id), method: "get", :class => 'btn btn-primary' %>
-        <%= link_to "Delete Account", user_path(current_user.id), method: "delete", :class => 'btn btn-small btn-danger' %>
       <% else %>
         <%= link_to "Sign Up", signup_path, :class => 'btn btn-primary' %> or
         <%= link_to "Log In", login_path, :class => 'btn btn-primary' %>
       <% end %>
     </div>
+    <h4><%= link_to 'Fiction Gun', root_path%></h4>
+    <h5>Smoking hot fiction.</h5>
+    <br><br>
+    <h3><%= yield :title %></h3>
     <%= yield %>
   </div>
 

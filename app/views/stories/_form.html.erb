@@ -12,9 +12,16 @@
 <%= form_for @story do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
-  <%= f.label :text %>
-  <%= f.text_field :text %>
+      <div class="control-group">
+          <label class="control-label">Genre</label>
+          <div class="controls">
+            <%= f.collection_select(:genre_id, @genres, :id, :name) %>
+          </div>
+        </div>
+
   <%= f.label :genre_id %>
   <%= f.text_field :genre_id %>
+  <%= f.label :text %>
+  <%= f.text_area :text, :size => "160x16" %>
   <%= f.submit :class => 'btn btn-primary' %>
 <% end %>
