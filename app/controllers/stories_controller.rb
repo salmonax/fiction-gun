@@ -8,11 +8,10 @@ class StoriesController < ApplicationController
 
   def create
     @story = current_user.stories.new(params[:story])
-
     if @story.save
       Contribution.create(:story_id => @story.id, :user_id => current_user.id)
       flash[:notice] = "Your story was successfully created! YAY!"
-      redirect_to stories_path
+      redirect_to story_path(@story)
     else
       redirect_to :back
       flash[:alert] = "Please make sure all fields are filled in and try again."
@@ -37,7 +36,7 @@ class StoriesController < ApplicationController
     @story = Story.find(params[:id])
     if @story.update_attributes(params[:story])
       flash[:notice] = "Your contact was successfully updated! WOO!"
-      redirect_to story_path
+      redirect_to story_path(@story)
     else
       render :edit
     end

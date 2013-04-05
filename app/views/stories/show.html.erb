@@ -1,16 +1,11 @@
 <% provide :title, "#{@story.title}" %>
+<i><%= "Genre: #{@story.genre.name}" %></i><br>
+<i><%= "Word count: #{@story.word_count}" %></i><br><br>
 
-<table>
-  <tr>
-    <td>Title</td>
-    <td>Text</td>
-    <td>Genre</td>
-  </tr>
-  <tr>
-    <td><%= @story.title %></td>
-    <td><%= @story.text %></td>
-    <td><%= @story.genre_id %></td>
-  </tr>
-</table>
+<body>
+  <%= @story.text %>
 
-<p><%= link_to 'Home', stories_path %></p>
+</body>
+<br><br>
+
+<p><%= link_to 'Home', stories_path, :class => 'btn btn-primary' %></p>

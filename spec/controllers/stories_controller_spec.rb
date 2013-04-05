@@ -1,12 +1,7 @@
 require 'spec_helper'
 
 describe StoriesController do
-  let(:story) {FactoryGirl.create :story}
-  let(:user) {FactoryGirl.create :user}
-  let(:valid_attributes) {{ :title => 'story of greatness', :text => 'one upon there was a dinosaur. then it died. the end.', :genre_id => 1}}
-  let(:valid_parameters) {{:story => valid_attributes, :id => story.id}}
-  let(:invalid_attributes) {{:title => ''}}
-  let(:invalid_parameters) {{:story => invalid_attributes, :id => story.id}}
+  
 
   context 'routing' do
     it {should route(:get, '/stories/new').to :action => :new}
@@ -17,6 +12,13 @@ describe StoriesController do
     it {should route(:delete, '/stories/1').to :action => :destroy, :id => 1}
     it {should route(:get, '/stories').to :action => :index}
   end
+
+  let(:story) {FactoryGirl.create :story}
+  let(:user) {FactoryGirl.create :user}
+  let(:valid_attributes) {{ :title => 'story of greatness', :text => 'one upon there was a dinosaur. then it died. the end.', :genre_id => 1}}
+  let(:valid_parameters) {{:story => valid_attributes, :id => story.id}}
+  let(:invalid_attributes) {{:title => ''}}
+  let(:invalid_parameters) {{:story => invalid_attributes, :id => story.id}}
 
   context 'GET new' do
     before {get :new, {}, {'user_id' => user.id}}
@@ -30,14 +32,16 @@ describe StoriesController do
       end
 
       before {post :create, valid_parameters, {'user_id' => user.id}}
-      it {should redirect_to stories_path}
+      it {should redirect_to story_path(Story.last)}
       it {should set_the_flash[:notice]}
     end
 
     context 'with invalid parameters' do
-      before {post :create, invalid_parameters, {'user_id' => user.id}}
-
-      it {should render_template :new}
+      before do
+        request.env["HTTP_REFERER"] = "where_i_came_from"
+        post :create, invalid_parameters, {'user_id' => user.id}
+      end
+      it {should redirect_to "where_i_came_from"}
     end
   end
 
@@ -68,7 +72,7 @@ describe StoriesController do
         Story.find(story.id).title.should eq valid_attributes[:title]
       end
 
-      it {should redirect_to story_path}
+      it {should redirect_to story_path(story)}
       it {should set_the_flash[:notice]}
     end
 

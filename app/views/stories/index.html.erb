@@ -3,7 +3,6 @@
 <table class="table">
   <tr>
     <td>Title</td>
-    <td>Text</td>
     <td>Genre</td>
     <td></td>
     <td></td>
@@ -11,7 +10,6 @@
   <% @stories.each do |story| %>
     <tr>
       <td><%= link_to story.title, story_path(story.id), :method => :get %></td>
-      <td><%= story.text %></td>
       <td><%= story.try(:genre).try(:name) %></td>
       <td><%= link_to 'Edit', edit_story_path(story), :class => 'btn btn-primary' %></td>
       <td><%= link_to 'Delete', story, :class => 'btn btn-primary', :method => :delete, :data => { :confirm => 'Are you sure?' }  %></td>
