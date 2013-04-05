@@ -13,5 +13,13 @@ describe Story do
   it {should have_many(:users).through(:contributions)}
 
   it {should belong_to :genre}
+
+  context '#word_count' do
+    it 'shows the number of words typed into the current text field for the story' do
+      @story = Story.new(title: 'the end', text: 'we are all really happy', genre_id: 7)
+      @story.save
+      @story.word_count.should eq 5
+    end
+  end
   
 end
