@@ -24,19 +24,19 @@ describe SimplePromptsController do
   # SimplePrompt. As you add validations to SimplePrompt, be sure to
   # update the return value of this method accordingly.
   def valid_attributes
-    { "text" => "MyString" }
+    { "text" => "There is no cheese left. GO!" }
   end
 
+  let(:user) {FactoryGirl.create(:user)}
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # SimplePromptsController. Be sure to keep this updated too.
-  def valid_session
-    {}
-  end
+
+  let(:valid_session) {{'user_id' => user.id}}
 
   describe "GET index" do
     it "assigns all simple_prompts as @simple_prompts" do
-      simple_prompt = SimplePrompt.create! valid_attributes
+      simple_prompt = user.simple_prompts.create! valid_attributes
       get :index, {}, valid_session
       assigns(:simple_prompts).should eq([simple_prompt])
     end
@@ -44,7 +44,7 @@ describe SimplePromptsController do
 
   describe "GET show" do
     it "assigns the requested simple_prompt as @simple_prompt" do
-      simple_prompt = SimplePrompt.create! valid_attributes
+      simple_prompt = user.simple_prompts.create! valid_attributes
       get :show, {:id => simple_prompt.to_param}, valid_session
       assigns(:simple_prompt).should eq(simple_prompt)
     end
@@ -59,7 +59,7 @@ describe SimplePromptsController do
 
   describe "GET edit" do
     it "assigns the requested simple_prompt as @simple_prompt" do
-      simple_prompt = SimplePrompt.create! valid_attributes
+      simple_prompt = user.simple_prompts.create! valid_attributes
       get :edit, {:id => simple_prompt.to_param}, valid_session
       assigns(:simple_prompt).should eq(simple_prompt)
     end
@@ -81,7 +81,7 @@ describe SimplePromptsController do
 
       it "redirects to the created simple_prompt" do
         post :create, {:simple_prompt => valid_attributes}, valid_session
-        response.should redirect_to(SimplePrompt.last)
+        should redirect_to stories_path
       end
     end
 
@@ -97,7 +97,7 @@ describe SimplePromptsController do
         # Trigger the behavior that occurs when invalid params are submitted
         SimplePrompt.any_instance.stub(:save).and_return(false)
         post :create, {:simple_prompt => { "text" => "invalid value" }}, valid_session
-        response.should render_template("new")
+        should render_template("new")
       end
     end
   end
@@ -105,7 +105,7 @@ describe SimplePromptsController do
   describe "PUT update" do
     describe "with valid params" do
       it "updates the requested simple_prompt" do
-        simple_prompt = SimplePrompt.create! valid_attributes
+        simple_prompt = user.simple_prompts.create! valid_attributes
         # Assuming there are no other simple_prompts in the database, this
         # specifies that the SimplePrompt created on the previous line
         # receives the :update_attributes message with whatever params are
@@ -115,21 +115,21 @@ describe SimplePromptsController do
       end
 
       it "assigns the requested simple_prompt as @simple_prompt" do
-        simple_prompt = SimplePrompt.create! valid_attributes
+        simple_prompt = user.simple_prompts.create! valid_attributes
         put :update, {:id => simple_prompt.to_param, :simple_prompt => valid_attributes}, valid_session
         assigns(:simple_prompt).should eq(simple_prompt)
       end
 
       it "redirects to the simple_prompt" do
-        simple_prompt = SimplePrompt.create! valid_attributes
+        simple_prompt = user.simple_prompts.create! valid_attributes
         put :update, {:id => simple_prompt.to_param, :simple_prompt => valid_attributes}, valid_session
-        response.should redirect_to(simple_prompt)
+        should redirect_to(simple_prompt)
       end
     end
 
     describe "with invalid params" do
       it "assigns the simple_prompt as @simple_prompt" do
-        simple_prompt = SimplePrompt.create! valid_attributes
+        simple_prompt = user.simple_prompts.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         SimplePrompt.any_instance.stub(:save).and_return(false)
         put :update, {:id => simple_prompt.to_param, :simple_prompt => { "text" => "invalid value" }}, valid_session
@@ -137,27 +137,27 @@ describe SimplePromptsController do
       end
 
       it "re-renders the 'edit' template" do
-        simple_prompt = SimplePrompt.create! valid_attributes
+        simple_prompt = user.simple_prompts.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         SimplePrompt.any_instance.stub(:save).and_return(false)
         put :update, {:id => simple_prompt.to_param, :simple_prompt => { "text" => "invalid value" }}, valid_session
-        response.should render_template("edit")
+        should render_template("edit")
       end
     end
   end
 
   describe "DELETE destroy" do
     it "destroys the requested simple_prompt" do
-      simple_prompt = SimplePrompt.create! valid_attributes
+      simple_prompt = user.simple_prompts.create! valid_attributes
       expect {
         delete :destroy, {:id => simple_prompt.to_param}, valid_session
       }.to change(SimplePrompt, :count).by(-1)
     end
 
     it "redirects to the simple_prompts list" do
-      simple_prompt = SimplePrompt.create! valid_attributes
+      simple_prompt = user.simple_prompts.create! valid_attributes
       delete :destroy, {:id => simple_prompt.to_param}, valid_session
-      response.should redirect_to(simple_prompts_url)
+      should redirect_to(simple_prompts_url)
     end
   end
 

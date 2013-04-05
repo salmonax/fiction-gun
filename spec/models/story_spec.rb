@@ -9,9 +9,8 @@ describe Story do
   it {should allow_mass_assignment_of :text}
   it {should allow_mass_assignment_of :genre_id}
 
-
+  it {should have_many(:contributions)}
   it {should have_many(:users).through(:contributions)}
-
   it {should belong_to :genre}
   
 end
