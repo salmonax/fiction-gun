@@ -1,8 +1,11 @@
 class Story < ActiveRecord::Base
 
-  validates :title, :text, :contributor_id, :genre_id, :presence => true
+  validates :title, :text, :genre_id, :presence => true
 
-  attr_accessible :title, :text, :contributor_id, :genre_id
+  attr_accessible :title, :text, :genre_id
+
+  has_many :contributions
+  has_many :users, :through => :contributions
 
   belongs_to :genre
 end
