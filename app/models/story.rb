@@ -1,6 +1,7 @@
 class Story < ActiveRecord::Base
 
-  validates :title, :text, :genre_id, :presence => true
+  validates :title, :text, :presence => true, :length => { :in => 6..255 }
+  #validates :genre_id, :presence => true
 
   attr_accessible :title, :text, :genre_id
 

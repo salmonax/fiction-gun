@@ -14,7 +14,8 @@ genres = [
   'Zombie Erotica', 
   'Mystery',
   'Historical Fiction',
-  'Young Adult Fiction'
+  'Young Adult Fiction',
+  'Flash Fiction'
 ]
 
 # Genre.create(name: 'Thing')

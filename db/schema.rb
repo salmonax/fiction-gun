@@ -26,10 +26,19 @@ ActiveRecord::Schema.define(:version => 20130405184858) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "simple_prompts", :force => true do |t|
+    t.string   "text"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "stories", :force => true do |t|
-    t.string  "title"
-    t.text    "text"
-    t.integer "genre_id"
+    t.string   "title"
+    t.text     "text"
+    t.integer  "genre_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
