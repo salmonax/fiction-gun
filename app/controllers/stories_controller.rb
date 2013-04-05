@@ -13,9 +13,8 @@ class StoriesController < ApplicationController
       Contribution.create(:story_id => @story.id, :user_id => current_user.id)
       flash[:notice] = "Your story was successfully created! YAY!"
       redirect_to stories_path
-
     else
-      render :new
+      redirect_to :back
       flash[:alert] = "Please make sure all fields are filled in and try again."
     end
   end

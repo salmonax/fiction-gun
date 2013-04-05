@@ -1,15 +1,28 @@
-<p id="notice"><%= notice %></p>
+<%= flash[:notice] %>
+<%= flash[:alert] %>
+
+<% if @story.errors.any? %>
+  <div class="alert alert-error">
+    <h3>Not saved. Please correct these problems:</h3>
+    <ul>
+      <% @story.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    <ul>
+  </div>
+<% end %>  
 
 <p>
-  <b>Text:</b>
+  <b>Prompt:</b>
   <%= @simple_prompt.text %>
+  <br></br>
+  Created by:
+  <%= @simple_prompt.user.pen_name %>
 </p>
 
-<p>
-  <b>User:</b>
-  <%= @simple_prompt.user_id %>
-</p>
-
-
-<%= link_to 'Edit', edit_simple_prompt_path(@simple_prompt) %> |
-<%= link_to 'Back', simple_prompts_path %>
+<%= form_for @story do |f| %>
+  <%= f.hidden_field :title %>
+  <%= f.label :text %>
+  <%= f.text_area :text, :size => "160x16" %>
+  <%= f.submit :class => 'btn btn-primary' %>
+<% end %>

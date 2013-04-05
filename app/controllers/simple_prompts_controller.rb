@@ -3,17 +3,23 @@ class SimplePromptsController < ApplicationController
   before_filter :authorize
 
   def index
-    @simple_prompts = current_user.simple_prompts.all
+    @simple_prompts = SimplePrompt.all
+    # render :text => SimplePrompt.all.sample.text
   end
 
   # GET /simple_prompts/1
   def show
-    @simple_prompt = current_user.simple_prompts.find(params[:id])
+    @simple_prompt = SimplePrompt.find(params[:id])
+    @story = current_user.stories.new(:title => "Prompted by: #{@simple_prompt.text}") 
   end
 
   # GET /simple_prompts/new
   def new
     @simple_prompt = current_user.simple_prompts.new
+
+  end
+
+  def random
 
   end
 

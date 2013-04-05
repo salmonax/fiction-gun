@@ -15,7 +15,7 @@
       <div class="control-group">
           <label class="control-label">Genre</label>
           <div class="controls">
-            <%= f.collection_select(:genre_id, @genres, :id, :name) %>
+            <%= f.collection_select(:genre_id, @genres, :id, :name) if @genres %>
           </div>
         </div>
 

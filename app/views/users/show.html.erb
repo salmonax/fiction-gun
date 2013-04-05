@@ -8,6 +8,27 @@
 
 <table class="table">
   <tr>
+    <td>Prompts</td>
+    <td>Created</td>
+    <td></td>
+    <td></td>
+  </tr>
+  <% @user.simple_prompts.each do |prompt| %>
+    <tr>
+      <td><%= prompt.text %></td>
+      <td><%= prompt.created_at.localtime.strftime("%x") %></td>
+      <% if current_user.id == @user.id %>
+        <td><%= link_to 'Edit', edit_simple_prompt_path(prompt), :class => 'btn btn-primary' %></td>
+        <td><%= link_to 'Delete', prompt, :class => 'btn btn-primary', :method => :delete, :data => { :confirm => 'Are you sure?' }  %></td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
+
+
+
+<table class="table">
+  <tr>
     <td>Title</td>
     <td>Text</td>
     <td>Genre</td>
