@@ -8,4 +8,8 @@ class Story < ActiveRecord::Base
   has_many :users, :through => :contributions
 
   belongs_to :genre
+
+  def word_count
+    text.split.size
+  end
 end

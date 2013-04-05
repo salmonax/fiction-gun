@@ -18,10 +18,7 @@
             <%= f.collection_select(:genre_id, @genres, :id, :name) %>
           </div>
         </div>
-
-  <%= f.label :genre_id %>
-  <%= f.text_field :genre_id %>
   <%= f.label :text %>
-  <%= f.text_area :text, :size => "160x16" %>
+  <%= f.text_area :text, :size => "160x16", :maxlength => 5000 %>
   <%= f.submit :class => 'btn btn-primary' %>
 <% end %>
