@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130404212455) do
+ActiveRecord::Schema.define(:version => 20130405172724) do
 
   create_table "contributions", :force => true do |t|
     t.integer  "user_id"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(:version => 20130404212455) do
 
   create_table "genres", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "simple_prompts", :force => true do |t|
+    t.string   "text"
+    t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

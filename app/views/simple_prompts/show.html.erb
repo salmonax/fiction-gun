@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Text:</b>
+  <%= @simple_prompt.text %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @simple_prompt.user_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_simple_prompt_path(@simple_prompt) %> |
+<%= link_to 'Back', simple_prompts_path %>

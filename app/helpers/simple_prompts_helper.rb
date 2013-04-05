@@ -1,0 +1,2 @@
+module SimplePromptsHelper
+end

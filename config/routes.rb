@@ -1,5 +1,8 @@
 FictionGun::Application.routes.draw do
 
+  resources :simple_prompts
+
+
   resources :stories
   resources :genres, :except => :show
   root :to => 'stories#index'
