@@ -19,9 +19,9 @@
           <div class="dropdown">
             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Account <span class="caret"></span></a>
             <ul class="dropdown-menu">
-              <%= link_to "My Profile", user_path(current_user.id), method: "get" %>
-              <%= link_to "Log Out", logout_path, method: "delete" %>
-              <%= link_to "Edit Account", edit_user_path(current_user.id), method: "get" %>
+              <li><%= link_to "View Profile", user_path(current_user.id), method: "get", :class => 'btn' %></li>
+              <li><%= link_to "Edit Account", edit_user_path(current_user.id), method: "get", :class => 'btn' %></li>
+              <li><%= link_to "Log Out", logout_path, method: "delete", :class => 'btn' %></li>
             </ul>
           </div>
         </div>
