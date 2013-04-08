@@ -3,11 +3,13 @@ require 'spec_helper'
 describe Dashboard do
 
   context '#stories' do
+
+    let(:user) {FactoryGirl.create :user}
+
     it 'displays the stories of the user who is logged in' do
-      user = FactoryGirl.create(:user)
       story = FactoryGirl.create(:story, :users => [user])
       dashboard = Dashboard.new(user)
-      dashboard.stories.should eq [story]
+      dashboard.stories.should eq user.stories
     end
   end
 

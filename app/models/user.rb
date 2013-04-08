@@ -10,4 +10,8 @@ class User < ActiveRecord::Base
   has_many :contributions
   has_many :stories, :through => :contributions
   has_many :simple_prompts
+
+  def total_word_count
+    self.stories.inject(0) {|total, story| total += story.word_count}
+  end
 end

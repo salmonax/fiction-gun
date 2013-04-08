@@ -1,0 +1,34 @@
+
+ 
+
+<div class="container"> 
+   <div class="row-fluid">
+    <div class="span6" style="padding:4px"><h4><%= link_to 'Fiction Gun', root_path%></h4><h5>Smoking hot fiction.</h5></div>
+    <!--fixme: bad inline styling-->
+    <div class="span6" style="padding:10px;text-align:right">
+      <% if flash[:notice] %>
+        <div class="alert alert-info"><%= flash[:notice] %></div>
+      <% end %>
+      <% if flash[:alert] %>
+        <div class="alert alert-error"><%= flash[:alert] %></div>
+      <% end %>
+      <% if current_user %>
+        Logged in as <b><%= current_user.pen_name %></b>.
+
+        <div class="btn-group">
+          <div class="dropdown">
+            <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">Account <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <%= link_to "My Profile", user_path(current_user.id), method: "get" %>
+              <%= link_to "Log Out", logout_path, method: "delete" %>
+              <%= link_to "Edit Account", edit_user_path(current_user.id), method: "get" %>
+            </ul>
+          </div>
+        </div>
+      <% else %>
+        <%= link_to "Sign Up", signup_path, :class => 'btn btn-primary' %> or
+        <%= link_to "Log In", login_path, :class => 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

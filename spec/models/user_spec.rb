@@ -25,4 +25,13 @@ describe User do
     it {should have_many(:contributions)}
     it {should have_many(:simple_prompts)}
   end
+
+  context '#total_word_count' do
+    it 'should show the total word count for a user, across stories.' do
+      user = FactoryGirl.create(:user)
+      user.stories.inject(0) { |total, story| total += story.word_count }.
+        should eq user.total_word_count
+    end
+  end
+
 end

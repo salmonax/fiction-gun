@@ -9,6 +9,7 @@ class SimplePromptsController < ApplicationController
 
   # GET /simple_prompts/1
   def show
+    @genres = Genre.all
     @simple_prompt = SimplePrompt.find(params[:id])
     @story = current_user.stories.new(:title => "Prompted by: #{@simple_prompt.text}") 
   end

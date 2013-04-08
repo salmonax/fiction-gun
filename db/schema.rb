@@ -34,11 +34,9 @@ ActiveRecord::Schema.define(:version => 20130405184858) do
   end
 
   create_table "stories", :force => true do |t|
-    t.string   "title"
-    t.text     "text"
-    t.integer  "genre_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string  "title"
+    t.text    "text"
+    t.integer "genre_id"
   end
 
   create_table "users", :force => true do |t|

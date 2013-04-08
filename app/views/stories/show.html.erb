@@ -1,5 +1,5 @@
-<% provide :title, "#{@story.title}" %>
-<i><%= "Genre: #{@story.genre.name}" %></i><br>
+<% provide :title, "#{@story.try(:title)}" %>
+<i><%= "Genre: #{@story.try(:genre).try(:name)}" %></i><br>
 <i><%= "Word count: #{@story.word_count}" %></i><br><br>
 
 <body>

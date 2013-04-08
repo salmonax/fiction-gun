@@ -13,4 +13,8 @@ class Story < ActiveRecord::Base
   def word_count
     text.split.size
   end
+
+  def word_limit(length)
+    text.split[0,length].join(' ') + (text.length > length ? '...' : '')
+  end
 end

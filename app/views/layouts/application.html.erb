@@ -6,26 +6,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <%= render 'layouts/header' %>
   <div class="container">
-    <% if flash[:notice] %>
-      <div class="alert alert-info"><%= flash[:notice] %></div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class="alert alert-error"><%= flash[:alert] %></div>
-    <% end %>
-    <div style="text-align:right;padding:10px">
-      <% if current_user %>
-        Logged in as <b><%= current_user.pen_name %></b>.
-        <%= link_to "My Profile", user_path(current_user.id), method: "get", :class => 'btn btn-primary' %>
-        <%= link_to "Log Out", logout_path, method: "delete", :class => 'btn btn-primary' %>
-        <%= link_to "Edit Account", edit_user_path(current_user.id), method: "get", :class => 'btn btn-primary' %>
-      <% else %>
-        <%= link_to "Sign Up", signup_path, :class => 'btn btn-primary' %> or
-        <%= link_to "Log In", login_path, :class => 'btn btn-primary' %>
-      <% end %>
-    </div>
-    <h4><%= link_to 'Fiction Gun', root_path%></h4>
-    <h5>Smoking hot fiction.</h5>
+    
     <br><br>
     <h3><%= yield :title %></h3>
     <%= yield %>
