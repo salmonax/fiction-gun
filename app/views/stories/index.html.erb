@@ -1,20 +1,5 @@
 <% provide :title, "Current Stories" %>
 
-<table class="table">
-  <tr>
-    <td>Title</td>
-    <td>Genre</td>
-    <td></td>
-    <td></td>
-  </tr>
-  <% @stories.each do |story| %>
-    <tr>
-      <td><%= link_to story.title, story_path(story.id), :method => :get %></td>
-      <td><%= story.try(:genre).try(:name) %></td>
-      <td><%= link_to 'Edit', edit_story_path(story), :class => 'btn btn-primary' %></td>
-      <td><%= link_to 'Delete', story, :class => 'btn btn-primary', :method => :delete, :data => { :confirm => 'Are you sure?' }  %></td>
-    </tr>
-  <% end %>
-</table>
+<%= render :partial => 'list', :locals => {:stories => @stories} %>
 
 <p><%= link_to 'Add story', new_story_path, :class => 'btn btn-primary' %></p>
