@@ -20,5 +20,14 @@ describe Story do
       @story.word_count.should eq 5
     end
   end
+
+  context '#word_limit' do
+    it 'limits the number of words displayed to as many words as you want' do
+      @story = Story.new(title: 'the end', text: 'we are all really happy to be learning at Epicodus', genre_id: 7)
+      @story.save
+      @story.word_limit(7).should eq 'we are all really happy to be...'
+    end
+  end
+
   
 end
