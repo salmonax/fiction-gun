@@ -7,7 +7,7 @@ class StoriesController < ApplicationController
   end
 
   def create
-    @story = current_user.stories.new(params[:story])
+    @story = current_user.stories.build(params[:story])
     if @story.save
       Contribution.create(:story_id => @story.id, :user_id => current_user.id)
       flash[:notice] = "Your story was successfully created! YAY!"
