@@ -1,5 +1,3 @@
 <% provide :title, "#{@dashboard.user.pen_name}'s Fiction Trigger" %>
-
-<%= render :partial => 'stories/list', :locals => {:stories => @dashboard.stories} %>
-
+<%= render :partial => 'list', :locals => {:stories => @dashboard.stories} %>
 <p><%= link_to 'Add story', new_story_path, :class => 'btn btn-primary' %></p>

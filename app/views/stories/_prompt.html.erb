@@ -1,5 +1,5 @@
 <% if @prompt %>
   <%= @prompt.text %>
 <% else %>
-  <%= link_to 'Prompt me!', new_story_path, :class => 'btn btn-primary', :random? => true %>
+  <%= link_to 'Prompt me!', simple_prompt_path(SimplePrompt.all.sample.id), :class => 'btn btn-primary', :random? => true %>
 <% end %>
