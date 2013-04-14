@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails'
 gem 'pg'
-gem 'bootstrap-sass'
+# gem 'bootstrap-sass'
 gem 'thin'
 gem 'jquery-rails'
 gem 'bcrypt-ruby'
@@ -34,5 +34,5 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier', '>= 1.0.3'
-  gem "twitter-bootstrap-rails"
+  # gem "twitter-bootstrap-rails"
 end
