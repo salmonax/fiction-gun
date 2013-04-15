@@ -1,5 +1,22 @@
 <% provide :title, "Current Stories" %>
 
-<%= render :partial => 'list', :locals => {:stories => @stories} %>
+<!--%= render :partial => 'list', :locals => {:stories => @stories} %-->
+
+<% content_for :sidebar do %>
+  <section id='story_index'>
+    <header><h1>Story Index</h1></header>
+    <ul>
+      RENDER STORIES
+      <!--%= render @stories %-->
+    </ul>
+  </section>
+<% end %>
+
+<article>
+  <header>
+    <h1>Story Stuff </h1>
+  </header>
+  <!-- Story information -->
+</article>
 
 <p><%= link_to 'Add story', new_story_path, :class => 'btn btn-primary' %></p>

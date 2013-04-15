@@ -2,19 +2,26 @@
 <head>
   <meta charset="utf-8">
   <title>Fiction Gun | <%= yield :title %></title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
-  
   <%= render 'layouts/header' %>
   <div class="container">
-    
-    <br><br>
-    <h3><%= yield :title %></h3>
-    <%= yield %>
+    <section id="content">
+      <%= yield %>
+    </section>
+    <section id="sidebar">
+      <section id="recent_activity">
+        <header><h1 class="ir" id="recent">Recent Activity</h1></header>
+        <%= render partial: 'activity_items/recent' %>
+      </section>
+
+    </section>
   </div>
+  <%= render 'layouts/footer' %>
 
 </body>
 </html>

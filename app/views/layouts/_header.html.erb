@@ -1,29 +1,25 @@
+<header id="page_header" role="banner">
+  <nav id="utility">
+    <p>
+      You are logged in as <strong>Sam Spade</strong>
+      <%= link_to "[Your Account]", "#" %>
+      <%= link_to "[Logout]", "#" %>
+    </p>
+  </nav>
+  <%= link_to(
+        image_tag("logo.png",
+                    alt: "Artflow",
+                    id: "logo"),
+        root_url,
+        title: "Dashboard") %>
+  <nav id="main_nav" role="navigation">
+    <ul>
+      <li><%= link_to 'Genres', genres_path %></li>
+      <li><%= link_to 'Prompts', simple_prompts_path %></li>
+      <li><%= link_to 'Stories', stories_path %></li>
+      <li><%= link_to 'Users', users_path %></li>
+    </ul>
+  </nav>
 
- 
 
-<div class="container"> 
-   <div class="row-fluid">
-    <div class="span6" style="padding:4px"><h4><%= link_to 'Fiction Gun', root_path%></h4><h5>Smoking hot fiction.</h5></div>
-    <!--fixme: bad inline styling-->
-    <div class="span6" style="padding:10px;text-align:right">
-      <% if flash[:notice] %>
-        <div class="alert alert-info"><%= flash[:notice] %></div>
-      <% end %>
-      <% if flash[:alert] %>
-        <div class="alert alert-error"><%= flash[:alert] %></div>
-      <% end %>
-      <% if current_user %>
-        Logged in as <b><%= current_user.pen_name %></b>.
-
-        <div class="btn-group">
-              <li><%= link_to "View Profile", user_path(current_user.id), method: "get", :class => 'btn' %></li>
-              <li><%= link_to "Edit Account", edit_user_path(current_user.id), method: "get", :class => 'btn' %></li>
-              <li><%= link_to "Log Out", logout_path, method: "delete", :class => 'btn' %></li>
-        </div>
-      <% else %>
-        <%= link_to "Sign Up", signup_path, :class => 'btn btn-primary' %> or
-        <%= link_to "Log In", login_path, :class => 'btn btn-primary' %>
-      <% end %>
-    </div>
-  </div>
-</div>
+</header>
