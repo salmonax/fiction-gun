@@ -1,5 +1,3 @@
-<% if @prompt %>
-  <%= @prompt.text %>
-<% else %>
+<% if SimplePrompt.all.size != 0 %>
   <%= link_to 'Prompt me!', simple_prompt_path(SimplePrompt.all.sample.id), :class => 'btn btn-primary', :random? => true %>
 <% end %>
