@@ -8,7 +8,7 @@
     <ul>
   </div>
 <% end %>  
-
+<%= tinymce %>
 <%= form_for @story do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
@@ -19,6 +19,6 @@
       </div>
   </div>
   <%= f.label :text %>
-  <%= f.text_area :text, :size => "160x16", :maxlength => 5000 %>
+  <%= f.text_area :text, :class => "tinymce", :rows => 40, :cols => 120, :maxlength => 5000 %>
   <%= f.submit :class => 'btn btn-primary' %>
 <% end %>
